@@ -1,15 +1,17 @@
 {
   "manifest_version": 3,
-  "name": "Dominos Spend Calculator",
+  "name": "Domino's Spend Calculator",
   "version": "1.0",
-  "description": "Fetch and calculate spending from Dominos order history.",
-  "permissions": ["activeTab", "storage", "scripting"],
-  "host_permissions": ["https://api.dominos.co.in/*"],
+  "description": "Calculate total spend on Domino's orders.",
+  "permissions": ["storage", "activeTab", "scripting"],
   "background": {
     "service_worker": "background.js"
   },
+  "host_permissions": ["https://api.dominos.co.in/*"],
   "action": {
     "default_popup": "popup.html",
-    "default_icon": "icon.png"
+    "default_icon": {
+      "16": "icon16.png"
+    }
   }
 }

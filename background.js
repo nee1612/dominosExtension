@@ -1,30 +1,40 @@
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.action === "fetchOrders") {
-    const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}");
-    const authToken = userInfo.headers?.credentials?.refreshToken;
-    const userId = userInfo.userId;
+const fetchOrders = async (authtoken, userId) => {
+  const apiUrl =
+    "https://api.dominos.co.in/order-service/ve3/orders?pageNo=1&pageSize=10&deliveryType=&mobile=8765562301&userId=" +
+    userId;
 
-    if (!authToken || !userId) {
-      sendResponse({ success: false, error: "Auth token or User ID missing" });
-      return false;
-    }
+  try {
+    const response = await fetch(apiUrl, {
+      method: "GET",
+      headers: {
+        accept: "application/json, text/plain, */*",
+        authtoken: authtoken, // Use the received auth token
+        userid: userId,
+      },
+      referrer: "https://pizzaonline.dominos.co.in/",
+      referrerPolicy: "strict-origin-when-cross-origin",
+      mode: "cors",
+      credentials: "omit",
+    });
 
-    fetch(
-      `https://api.dominos.co.in/order-service/ve1/orders?userId=${userId}`,
-      {
-        headers: {
-          authtoken: `Bearer ${authToken}`,
-          userid: userId,
-        },
-      }
-    )
+    const rawData = await response.json();
+    return { rawData };
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    return { rawData: null };
+  }
+};
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.type === "GET_ORDERS") {
+    fetchOrders(message.authtoken, message.userId)
       .then((response) => {
-        if (!response.ok) throw new Error("Failed to fetch orders");
-        return response.json();
+        sendResponse(response);
       })
-      .then((data) => sendResponse({ success: true, data }))
-      .catch((error) => sendResponse({ success: false, error: error.message }));
-
+      .catch((error) => {
+        console.error("Error in message handler:", error);
+        sendResponse({ rawData: null });
+      });
     return true;
   }
 });
