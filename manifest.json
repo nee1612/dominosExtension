@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Dominos Spend Calculator",
+  "version": "1.0",
+  "description": "Fetch and calculate spending from Dominos order history.",
+  "permissions": ["activeTab", "storage", "scripting"],
+  "host_permissions": ["https://api.dominos.co.in/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  }
+}

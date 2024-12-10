@@ -1,0 +1,145 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  min-height: 100vh;
+}
+
+.fetchOrders {
+  width: 100px;
+}
+
+.order-history {
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.fetch-btn {
+  display: block;
+  margin: 0 auto 20px;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.fetch-btn:hover {
+  background-color: #218838;
+}
+
+.order {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.order h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #333;
+}
+
+.order p {
+  font-size: 14px;
+  color: #555;
+}
+
+.order h4 {
+  margin-top: 15px;
+  font-size: 18px;
+  color: #333;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+img {
+  max-width: 100px;
+  border-radius: 5px;
+}
+
+strong {
+  font-weight: bold;
+}
+
+.order-history {
+  padding: 20px;
+}
+
+.spend-calculator {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.spend-calculator i {
+  margin-right: 10px;
+  font-size: 24px;
+  color: #007bff;
+}
+
+.spend-calculator span {
+  font-weight: bold;
+  color: #333;
+  font-size: 20px;
+}
+
+.fetch-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.fetch-btn:hover {
+  background-color: #0056b3;
+}
+
+@media screen and (max-width: 600px) {
+  .order-history {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .fetch-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .order h3 {
+    font-size: 18px;
+  }
+
+  .order p,
+  .order h4,
+  li {
+    font-size: 12px;
+  }
+}
